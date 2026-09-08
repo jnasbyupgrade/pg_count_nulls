@@ -58,9 +58,10 @@ DECLARE
   v_schema name;
 BEGIN
   IF p_mode NOT IN ('fresh', 'update', 'existing') THEN
-    RAISE EXCEPTION
-      $msg$count_nulls.test_load_mode must be 'fresh', 'update' or 'existing', got '%'$msg$
-      , p_mode
+    RAISE EXCEPTION USING
+      MESSAGE = format('invalid value for parameter "count_nulls.test_load_mode": %L', p_mode)
+      , HINT = 'Valid values are ''fresh'', ''update'', and ''existing''.'
+      , ERRCODE = 'invalid_parameter_value'
     ;
   END IF;
 
