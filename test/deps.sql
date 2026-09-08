@@ -18,7 +18,7 @@ SELECT current_setting('count_nulls.test_load_mode') AS count_nulls_load_mode
  * grants it below on this one schema. Rolled back with the rest of the
  * session, like every other object a test/sql/ session makes.
  */
-CREATE SCHEMA _null_count_test;
 \set count_nulls_grant_schema _null_count_test
+CREATE SCHEMA :"count_nulls_grant_schema";
 
 \i test/helpers/use_test_user.sql
