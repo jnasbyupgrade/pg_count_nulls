@@ -57,6 +57,13 @@ DECLARE
   c_prefix CONSTANT text := 'count_nulls test schema ';
   v_schema name;
 BEGIN
+  IF p_mode NOT IN ('fresh', 'update', 'existing') THEN
+    RAISE EXCEPTION
+      $msg$count_nulls.test_load_mode must be 'fresh', 'update' or 'existing', got '%'$msg$
+      , p_mode
+    ;
+  END IF;
+
   IF p_mode = 'existing' THEN
     SELECT nspname INTO v_schema
       FROM pg_namespace n JOIN pg_extension x ON n.oid = x.extnamespace
