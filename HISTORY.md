@@ -3,11 +3,7 @@
 stable
 ------
 
-== CREATE EXTENSION no longer requires a superuser
-count_nulls is pure SQL functions, so the control file now says
-`superuser = false`: any role with `USAGE` and `CREATE` on the target schema
-can install it, and needs nothing at all on the database. The test suite runs
-as exactly such a role throughout, so this can't silently regress.
+- Extension no longer requires superuser to install
 
 1.0.0
 -----
